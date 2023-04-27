@@ -6,7 +6,7 @@ import Context from '../context/context';
 
 const { Search } = Input;
 const SearchComponent = () => {
-
+  console.log('in search component');
   const {setQuery} = useContext(Context)
 
 
