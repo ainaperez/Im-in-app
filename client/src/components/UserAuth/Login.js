@@ -27,8 +27,10 @@ const Login = () => {
   }
 
   const handleFormSubmit = async() => {
+    console.log('here1');
     await UserService.loginUser(username, password)
       .then(async(res) => {
+        console.log('here2');
           //await ActiveUserService.setActiveUser(res[0])
       }).then(() => navigate(`/`) )
   }
