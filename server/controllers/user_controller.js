@@ -1,7 +1,7 @@
 const User = require('../models/user_model');
 const passport = require('passport');
 var LocalStrategy = require('passport-local');
-const utility_functions = require('../utility_functions');
+const utility_functions = require('../utilities/utility_functions');
 
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());

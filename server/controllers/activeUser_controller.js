@@ -1,5 +1,5 @@
 const ActiveUser = require('../models/activeUser_model');
-const utility_functions = require('../utility_functions');
+const utility_functions = require('../utilities/utility_functions');
 
 const setActiveUser = async (req, res) => {
   console.log(`Function name: ${utility_functions.returnFuncName()}\n${req.body}\n`);

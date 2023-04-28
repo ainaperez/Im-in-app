@@ -5,7 +5,7 @@ cloudinary.config({
   api_key: process.env.API_KEY,
   api_secret: process.env.API_SECRET,
 });
-const utility_functions = require('../utility_functions');
+const utility_functions = require('../utilities/utility_functions');
 
 const addEvent = function(req, res) {
   try{
