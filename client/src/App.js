@@ -15,8 +15,9 @@ import MapPage from './components/Pages/MapPage';
 import MyEventsPage from './components/Pages/MyEvents';
 import { formatEvents } from './helpers/formatting_functions';
 
-function App() {
 
+function App() {
+  
   const navigate = useNavigate();
   const [events, setEvents] = useState(null);
   const [users, setUsers] = useState(null);
@@ -50,7 +51,7 @@ function App() {
   // manually and then change the id here in the function.
   // In the future this would be dinamically set with an authentication process.
   async function getActiveUser() {
-    setActiveUser(await UserService.getUserById("644116416da455b7fc0c8bba"))
+    setActiveUser(await UserService.getUserById(process.env.REACT_APP_USERID))
    }
 
   function getAllUsers () {
