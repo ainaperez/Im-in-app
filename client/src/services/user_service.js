@@ -8,7 +8,6 @@ const registerUser = (username, age, password) => fetchReq('register', {
 });
 
 const loginUser = (username,  password) => {
-  console.log('in login user service');
   fetchReq(`login/${username}/${password}`)};
 
 const getUserById = (userId) => fetchReq(`user/${userId}`);

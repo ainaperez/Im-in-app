@@ -6,7 +6,6 @@ import SearchComponent from "../UI/SearchComponent";
 
 const HomePage = () => {
 const{events} = useContext(Context)
-  console.log('Events:', events);
   return (
     <Layout>
       <div className="no-overflow">

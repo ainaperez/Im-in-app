@@ -61,7 +61,6 @@ function App() {
   }
 
    function getAllEvents () {
-    console.log(activeUser, 'in getAllEvents func');
     if(activeUser){
       EventService.getAllEvents(activeUser._id)
       .then(data => {

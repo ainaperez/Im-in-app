@@ -1,7 +1,6 @@
 import {commonHeaders, fetchReq } from "./services_common_data"
 
 const setActiveUser = async (user) => {
-  console.log('in active user service')
   return await fetchReq('set-active-user', {
   method: 'POST',
   headers: {...commonHeaders},
