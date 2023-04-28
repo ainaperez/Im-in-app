@@ -6,17 +6,17 @@ import { Link } from "react-router-dom";
 
 const Register = () => {
   const [username, setUsername] = useState('')
-  const [userAge, setUserAge] = useState(14)
+  const [userAge, setUserAge] = useState<number> (14)
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [formIsValid, setFormIsValid] = useState(false)
 
 
-  function handleInputChange (e) {
+  function handleInputChange (e: React.ChangeEvent<HTMLInputElement>) {
     const input = e.target.name;
     console.log(input)
     if(input === 'username') setUsername(e.target.value)
-    if(input === 'userAge') setUserAge(e.target.value)
+    if(input === 'userAge') setUserAge(Number(e.target.value))
     if(input === 'password') {
       setPassword(e.target.value)
     }
@@ -30,11 +30,11 @@ const Register = () => {
   }
 
 
-    function handleFormSubmit (e) {
+    function handleFormSubmit (e: React.ChangeEvent<HTMLInputElement>) {
     //e.preventDefault();
     registerUser(username, userAge ,password)
-    .then((data) => {
-    })
+    // .then((data) => {
+    // })
     return false;
   }
 

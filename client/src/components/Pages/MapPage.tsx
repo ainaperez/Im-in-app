@@ -1,7 +1,7 @@
 import * as L from "leaflet";
 import { MapContainer, TileLayer,Marker, Popup, useMapEvents, Tooltip} from 'react-leaflet'
 import Context from '../context/context';
-import { useContext, useEffect, useState } from 'react';
+import { ReactHTMLElement, useContext, useEffect, useState } from 'react';
 import Layout from "../Layout/Layout";
 import SearchComponent from "../UI/SearchComponent";
 import './MapPage.css'
@@ -24,7 +24,7 @@ function LocationMarker () {
     whenReady() {
       map.locate()
     },
-    locationfound(e) {
+    locationfound(e: any) {
       setPosition(e.latlng)
       map.flyTo(e.latlng, map.getZoom())
     },
@@ -54,7 +54,7 @@ var eventPositionIcon = new L.Icon({
 
 function getMarkers(){
   return(
-    events.map(event => {
+    events?.map(event => {
       if(event.coordinates.length ===2){
         return event.title.toLowerCase().indexOf(query.toLowerCase()) !== -1 && <Marker
         position={[event.coordinates[0],event.coordinates[1]]}
@@ -79,7 +79,7 @@ return (
           <MapContainer className="mapContainer" center={[52.516357, 13.378979]} zoom={13} scrollWheelZoom={false}>
         <TileLayer
           attribution='<a href=\"https://www.jawg.io\" target=\"_blank\">&copy; Jawg</a> - <a href=\"https://www.openstreetmap.org\" target=\"_blank\">&copy; OpenStreetMap</a>&nbsp;contributors'
-          url="https://tile.jawg.io/jawg-sunny/{z}/{x}/{y}{r}.png?access-token=gLEFUdwGIyJxOzqWgXnDyQdBUquHAVUDvqJFUliKpH3e5FQ68AZTwUphVyo81Tmn"
+          url="https://tile.jawg.io/jawg-sunny/{z}/{x}/{y}{r}.png?access-token=Lxat7gsyaHnDL4HKxkcLO3VrDvJ54wKHK6PimdK6JwjzBNWNDL53V9ZPyTdYmf8U"
         />
         <LocationMarker />
           {getMarkers()}
