@@ -9,7 +9,6 @@ export const fetchReq = async (url, parameters={}) => {
   try {
     let response = await fetch(`${BASE_URL}/${url}`, parameters);
     let ans = await response.json();
-    console.log('parsed response from fetch request:', ans);
     return ans;
   } catch (error) {
     console.log(error);
