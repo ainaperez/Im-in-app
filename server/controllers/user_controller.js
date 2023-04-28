@@ -1,6 +1,7 @@
 const User = require('../models/user_model');
 const passport = require('passport');
 var LocalStrategy = require('passport-local');
+const utility_functions = require('../utility_functions');
 
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
@@ -22,9 +23,9 @@ const createUser = async (req, res) => {
     }, req.body.password)
     res.json(req.body);
     res.status(201);
-  } catch (e) {
+  } catch (error) {
+    console.log(`Error message for function: ${utility_functions.returnFuncName()}\n${error}\n`);
     res.status(400);
-    console.log(e);
   }
 };
 
@@ -33,9 +34,9 @@ const loginUser = async(req, res) => {
     const user = await User.find({username: req.params.username});
     res.json(user)
     res.status(201);
-   } catch(e) {
+   } catch(error) {
+    console.log(`Error message for function: ${utility_functions.returnFuncName()}\n${error}\n`);
     res.status(400);
-    console.log(e)
    }
 }
 
@@ -52,9 +53,9 @@ const getAllUsers = async(req, res) => {
     const user = await User.find({});
     res.json(user)
     res.status(201);
-   } catch(e) {
+   } catch(error) {
+    console.log(`Error message for function: ${utility_functions.returnFuncName()}\n${error}\n`);
     res.status(400);
-    console.log(e)
    }
 }
 const getUserById = async(req, res) => {
@@ -63,9 +64,9 @@ const getUserById = async(req, res) => {
    console.log(user)
    res.json(user)
    res.status(201);
-  } catch(e) {
+  } catch(error) {
+   console.log(`Error message for function: ${utility_functions.returnFuncName()}\n${error}\n`);
    res.status(400);
-   console.log(e)
   }
 }
 
@@ -75,8 +76,8 @@ const addSavedEvent = async(req, res) => {
     user.savedEvents.push(req.body.eventId)
     user.save();
     res.json(user)
-  }catch(e){
-    console.log(e)
+  }catch(error){
+    console.log(`Error message for function: ${utility_functions.returnFuncName()}\n${error}\n`);
   }
 }
 
@@ -87,8 +88,8 @@ const removeSavedEvent = async(req, res) => {
     user.savedEvents = arrayWithoutUnsavedEvent;
     user.save();
     res.json(user)
-  }catch(e){
-    console.log(e)
+  }catch(error){
+    console.log(`Error message for function: ${utility_functions.returnFuncName()}\n${error}\n`);
   }
 }
 
@@ -98,8 +99,8 @@ const addJoinedEvent = async(req, res) => {
     user.joinedEvents.push(req.body.eventId)
     user.save();
     res.json(user)
-  }catch(e){
-    console.log(e)
+  }catch(error){
+    console.log(`Error message for function: ${utility_functions.returnFuncName()}\n${error}\n`);
   }
 }
 
@@ -110,8 +111,8 @@ const removeJoinedEvent = async(req, res) => {
     user.joinedEvents = arrayWithoutUnjoinedEvent;
     user.save();
     res.json(user)
-  }catch(e){
-    console.log(e)
+  }catch(error){
+    console.log(`Error message for function: ${utility_functions.returnFuncName()}\n${error}\n`);
   }
 }
 
@@ -125,8 +126,8 @@ const addFriend = async(req, res) => {
     friendUser.friends.push(req.body.activeUserId)
     friendUser.save();
     res.json(activeUser);
-  }catch(e){
-    console.log(e)
+  }catch(error){
+    console.log(`Error message for function: ${utility_functions.returnFuncName()}\n${error}\n`);
   }
 }
 
@@ -142,8 +143,8 @@ const removeFriend = async(req, res) => {
     friendUser.friends = FriendUserArrayWithoutFriend;
     friendUser.save();
     res.json(activeUser)
-  }catch(e){
-    console.log(e)
+  }catch(error){
+    console.log(`Error message for function: ${utility_functions.returnFuncName()}\n${error}\n`);
   }
 }
 
