@@ -44,7 +44,6 @@ const getActiveUser = async (req, res) => {
 }
 
 const deleteActiveUser= async(req, res) => {
-  console.log('delete', req.body.username)
   try{
     await ActiveUser.findOneAndRemove({username: req.body.username});
     res.json(req.body);
