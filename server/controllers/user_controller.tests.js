@@ -1,13 +1,15 @@
 const mongoose = require('mongoose');
 const request = require('supertest');
+const index = require ('../index');
+require('dotenv').config();
 
-beforeEach(()=> {
+beforeEach(async ()=> {
   // Create mock empty database
-
+  await mongoose.connect(process.env.MONGODB_URI);
 })
 afterEach(()=> {
   // Empty the mock database
-
+  await mongoose.connection.close();
 })
 
 describe('createUser', () => {
@@ -42,5 +44,23 @@ describe('loginUser', () => {
 
   })
   // Test that if passed 
+
+});
+
+describe('getAllUsers', () => {
+  // If empty database, return empty array
+  test('If there are no users in the database, should return an empty array', () => {
+    const res = await request(index).get('/users');
+    expect(res.statusCode).toBe(200);
+    expect(res.body).toEqual([]);
+  })
+
+  // Add one user, should return it as the only item of an array
+  
+  
+  // Add two users, should return both
+
+
+  // 
 
 });

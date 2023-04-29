@@ -8,6 +8,7 @@ const session = require('express-session');
 const passport = require('passport');
 //const {verifyToken} = require('./middleware/verifyToken');
 var bodyParser = require('body-parser')
+require ('./mongoConfig');
 
 app.use(cors())
 app.use(express.json());
@@ -51,4 +52,4 @@ app.listen(SERVER_PORT, (err) => {
 //   }
 // });
 
-//module.exports = server;
+module.exports = { server, app };
