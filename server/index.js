@@ -13,19 +13,19 @@ app.use(cors())
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.use(session({
-  key: 'user_sid',
-  secret: process.env.SESSION_SECRET,
-  resave: true,
-  saveUninitialized: false,
-  cookie: {
-    expires: 10800000, // 3 hours
-    httpOnly: false
-  }
-}))
-app.use(passport.initialize());
+// app.use(session({
+//   key: 'user_sid',
+//   secret: process.env.SESSION_SECRET,
+//   resave: true,
+//   saveUninitialized: false,
+//   cookie: {
+//     expires: 10800000, // 3 hours
+//     httpOnly: false
+//   }
+// }))
+// app.use(passport.initialize());
 
-app.use(passport.session());
+// app.use(passport.session());
 
 app.use(router);
 
