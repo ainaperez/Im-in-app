@@ -1,7 +1,6 @@
 const ActiveUser = require('../models/activeUser_model');
 
 const setActiveUser = async (req, res) => {
-  console.log(req.body)
   try {
     ActiveUser.create({
       identifier: req.body.identifier,
@@ -27,7 +26,6 @@ const setActiveUser = async (req, res) => {
 const getActiveUser = async(req, res) => {
   try{
     const activeUser = await ActiveUser.find({});
-    console.log('activeuser', activeUser)
     if(activeUser.length != 0){
       res.json(activeUser[0]);
     }else{
@@ -45,7 +43,6 @@ const getActiveUser = async(req, res) => {
 
 
 const deleteActiveUser= async(req, res) => {
-  console.log('delete', req.body.username)
   try{
     await ActiveUser.findOneAndRemove({username: req.body.username});
     res.json(req.body);
