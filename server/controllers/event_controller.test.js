@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { MongoMemoryServer } = require('mongodb-memory-server');
+const { MongoClient } = require('mongodb');
 //let mongod = null;
 
 // This test fails because 1 !== 2
