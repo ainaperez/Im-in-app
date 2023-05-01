@@ -41,5 +41,5 @@ function addMockEvents (mockEvents) {
   };
 }
 
-addMockUsers(mockUsers);
-addMockEvents(mockEvents);
+export function populateMockUsersDB () {addMockUsers(mockUsers)};
+export function populateMockEventsDB () {addMockEvents(mockEvents)};
