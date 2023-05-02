@@ -10,20 +10,16 @@ afterAll(() => {
   // app.close();
 });
 
-app.get('/user', function(req, res) {
-  res.status(200).json({ name: 'john' });
-});
 
 describe('Dummy test', () => {
   test('Dummy', () => {
     expect(1 + 2).toEqual(3);
-    // request(app)
-    // .end(function(err, res) {
-    //   if (err) throw err;
-    // })
   })
 });
 
+app.get('/user', function(req, res) {
+  res.status(200).json({ name: 'john' });
+});
 describe('Dummy test 2', () => {
   request(app)
   .get('/user')

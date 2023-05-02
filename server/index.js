@@ -4,9 +4,8 @@ const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
 const passport = require('passport');
-const app = express();
 var bodyParser = require('body-parser') // why var rather than ES6 const / let?
-
+const app = express();
 // Local imports
 const router = require('./router');
 //const {verifyToken} = require('./middleware/verifyToken');
