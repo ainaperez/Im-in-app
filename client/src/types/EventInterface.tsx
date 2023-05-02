@@ -1,4 +1,4 @@
-export interface Event {
+export interface EventInterface {
   _id: string,
   owner: string,
   title: string,
@@ -15,5 +15,5 @@ export interface Event {
   cancelled: boolean,
   active: boolean,
   __v?: number,
-  liked?: boolean
+  liked?: boolean,
 }
