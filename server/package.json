@@ -4,7 +4,7 @@
   "description": "server for ImIn app",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=TESTING jest --detectOpenHandles",
+    "test": "NODE_ENV=TESTING jest",
     "express": "nodemon start.js"
   },
   "author": "Aina Perez Serra",
