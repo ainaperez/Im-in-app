@@ -1,7 +1,8 @@
 const ActiveUser = require('../models/activeUser_model');
+const utility_functions = require('../utilities/utility_functions');
 
 const setActiveUser = async (req, res) => {
-  console.log(req.body)
+  console.log(`Function name: ${utility_functions.returnFuncName()}\n${req.body}\n`);
   try {
     ActiveUser.create({
       identifier: req.body.identifier,
@@ -18,42 +19,39 @@ const setActiveUser = async (req, res) => {
     })
     res.json(req.body);
     res.status(201);
-  } catch (e) {
+  } catch (error) {
+    console.log(`Error message for function: ${utility_functions.returnFuncName()}\n${error}\n`);
     res.status(400);
-    console.log(e);
   }
 };
 
-const getActiveUser = async(req, res) => {
-  try{
+const getActiveUser = async (req, res) => {
+  try {
     const activeUser = await ActiveUser.find({});
-    console.log('activeuser', activeUser)
-    if(activeUser.length != 0){
+    console.log('activeuser', activeUser);
+    if (activeUser.length != 0) {
       res.json(activeUser[0]);
-    }else{
+    } else {
       res.json(false)
     }
-
     res.status(201);
   }
-  catch (e) {
+  catch (error) {
     // res.json(false)
+    console.log(`Error message for function: ${utility_functions.returnFuncName()}\n${error}\n`);
     res.status(400);
-    console.log(e);
   }
 }
 
-
 const deleteActiveUser= async(req, res) => {
-  console.log('delete', req.body.username)
   try{
     await ActiveUser.findOneAndRemove({username: req.body.username});
     res.json(req.body);
     res.status(201);
   }
-  catch (e) {
+  catch (error) {
+    console.log(`Error message for function: ${utility_functions.returnFuncName()}\n${error}\n`);
     res.status(400);
-    console.log(e);
   }
 }
 

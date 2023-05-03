@@ -7,7 +7,8 @@ const registerUser = (username, age, password) => fetchReq('register', {
   body: JSON.stringify({username: username, age: age, password: password})
 });
 
-const loginUser = (username,  password) => fetchReq(`login/${username}/${password}`);
+const loginUser = (username,  password) => {
+  fetchReq(`login/${username}/${password}`)};
 
 const getUserById = (userId) => fetchReq(`user/${userId}`);
 

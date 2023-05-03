@@ -5,6 +5,7 @@ cloudinary.config({
   api_key: process.env.API_KEY,
   api_secret: process.env.API_SECRET,
 });
+const utility_functions = require('../utilities/utility_functions');
 
 const addEvent = function(req, res) {
   try{
@@ -27,9 +28,9 @@ const addEvent = function(req, res) {
   })
   res.json(req.body);
   res.status(201)
-  }catch(e){
+  }catch(error){
+    console.log(`Error message for function: ${utility_functions.returnFuncName()}\n${error}\n`);
     res.status(400);
-    console.log(e);
   }
 }
 
@@ -44,9 +45,9 @@ const getAllEvents = async function (req, res) {
       }})
     res.json(eventsNonHiddenFromUser)
     res.status(201)
-  }catch(e){
+  }catch(error){
+    console.log(`Error message for function: ${utility_functions.returnFuncName()}\n${error}\n`);
     res.status(400);
-    console.log(e);
   }
 }
 
@@ -56,8 +57,8 @@ const addUserToJoinedList = async(req, res) => {
     event.joined.push(req.body.userId)
     event.save();
     res.json(event)
-  }catch(e){
-    console.log(e)
+  }catch(error){
+    console.log(`Error message for function: ${utility_functions.returnFuncName()}\n${error}\n`);
   }
 }
 
@@ -68,8 +69,8 @@ const removeUserFromJoinedList = async(req, res) => {
     event.joined = arrayWithoutUnjoinedUser;
     event.save();
     res.json(event)
-  }catch(e){
-    console.log(e)
+  }catch(error){
+    console.log(`Error message for function: ${utility_functions.returnFuncName()}\n${error}\n`);
   }
 }
 
@@ -85,16 +86,20 @@ const handleUploadToCloudinary = async (req, res) => {
     const b64 = Buffer.from(req.file.buffer).toString("base64");
     let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
     const cldRes = await handleUpload(dataURI);
-    console.log(cldRes)
+    console.log(`Function name: ${utility_functions.returnFuncName()}\n${cldRes}\n`);
     res.json(cldRes);
   } catch (error) {
-    console.log(error);
+    console.log(`Error message for function: ${utility_functions.returnFuncName()}\n${error}\n`);
     res.send({
       message: error.message,
     });
   }
 }
 
-module.exports = {addEvent, getAllEvents, addUserToJoinedList,
+module.exports = {
+  addEvent,
+  getAllEvents,
+  addUserToJoinedList,
   removeUserFromJoinedList,
-  handleUploadToCloudinary}
+  handleUploadToCloudinary
+}
