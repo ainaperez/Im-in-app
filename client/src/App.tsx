@@ -14,32 +14,42 @@ import EventPage from './components/Pages/EventPage';
 import MapPage from './components/Pages/MapPage';
 import MyEventsPage from './components/Pages/MyEvents';
 import { formatEvents } from './helpers/formatting_functions';
+import { User } from './types/User';
+import { EventInterface } from './types/EventInterface';
 
 
 function App() {
   
   const navigate = useNavigate();
-  const [events, setEvents] = useState(null);
-  const [users, setUsers] = useState(null);
-  const [activeUser, setActiveUser] = useState(null);
+  const [events, setEvents] = useState <EventInterface[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
+  const [activeUser, setActiveUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [query, setQuery] = useState('')
 
   function addToSavedEvents(eventId){
-    UserService.addSavedEvent(activeUser._id, eventId).then(data=>setActiveUser(data))
+    if (activeUser && activeUser._id) {
+      UserService.addSavedEvent(activeUser._id, eventId).then(data=>setActiveUser(data))
+    }
   }
 
   function removeSavedEvent(eventId){
-    UserService.removeSavedEvent(activeUser._id, eventId).then(data=>setActiveUser(data))
+    if (activeUser && activeUser._id) {
+      UserService.removeSavedEvent(activeUser._id, eventId).then(data=>setActiveUser(data))
+    }
   }
 
   function addToJoinedEvents(eventId){
-    EventService.addUserToJoinedList(activeUser._id, eventId)
-    UserService.addJoinedEvent(activeUser._id, eventId).then(data=>setActiveUser(data))
+    if (activeUser && activeUser._id) {
+      EventService.addUserToJoinedList(activeUser._id, eventId)
+      UserService.addJoinedEvent(activeUser._id, eventId).then(data=>setActiveUser(data))
+    }
   }
   function removeJoinedEvent(eventId){
-    EventService.removeUserFromJoinedList(activeUser._id, eventId)
-    UserService.removeJoinedEvent(activeUser._id, eventId).then(data=>setActiveUser(data))
+    if (activeUser && activeUser._id) {
+      EventService.removeUserFromJoinedList(activeUser._id, eventId)
+      UserService.removeJoinedEvent(activeUser._id, eventId).then(data=>setActiveUser(data))
+    }
   }
 
   //Manually set for demonstartion

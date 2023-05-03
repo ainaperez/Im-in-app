@@ -8,26 +8,21 @@ import Event from "../Event";
 import { Avatar, FloatButton } from "antd";
 import './EventPage.css';
 import { MapContainer, TileLayer,Marker} from 'react-leaflet'
+import { User } from "../../types/User";
+import { EventInterface } from "../../types/EventInterface";
 
 
 const EventPage = () => {
 
 const {events, addToJoinedEvents, removeJoinedEvent, users, activeUser} = useContext(Context);
 const {state} = useLocation();
-const [event, setEvent] = useState(null)
-const [joined, setJoined] = useState();
-const [listUsersJoining, setListUsersJoining] = useState([]);
-const [numberUsersJoining, setNumberUsersJoining] = useState()
+const [event, setEvent] = useState<EventInterface | null>(null)
+const [joined, setJoined] = useState<boolean>();
+const [listUsersJoining, setListUsersJoining] = useState<User[]>([]);
+const [numberUsersJoining, setNumberUsersJoining] = useState<number>()
 
-function findEventByID (id) {
-  const eventFound = events.find(event => event._id === id)
-  setEvent(eventFound);
-  setJoined(eventFound.joining)
-  setNumberUsersJoining(eventFound.joined.length)
-  setListUsersJoining(eventFound.joined);
-}
 
-function getJoinedUsersInfo(userId) {
+function getJoinedUsersInfo(userId) {
   if(userId !==null){
     if(users){
       let avatar = users.find(user => {
@@ -38,8 +33,14 @@ function getJoinedUsersInfo(userId) {
   }
 }
 
-
 useEffect(() => {
+  function findEventByID (id) {
+    const eventFound = events.find(event => event._id === id)
+    setEvent(eventFound);
+    setJoined(eventFound.joining)
+    setNumberUsersJoining(eventFound.joined.length)
+    setListUsersJoining(eventFound.joined);
+  }
   if(events){
     findEventByID(state.id)
   }
@@ -48,18 +49,21 @@ useEffect(() => {
   return (
     <Layout>
         <div className="event-page">
-        {event ? <><Event link={false} data={event} numberUsersJoining={numberUsersJoining}></Event>
+        {event ? <><Event link={false} data={event} numberUsersJoining={numberUsersJoining} isEventFromOwner={event.owner === activeUser.id}></Event>
 
-        <MapContainer className="event-page-map-container" center={[event.coordinates[0], event.coordinates[1]]} zoom={13} scrollWheelZoom={false}>
-        <TileLayer
-          attribution='<a href=\"https://www.jawg.io\" target=\"_blank\">&copy; Jawg</a> - <a href=\"https://www.openstreetmap.org\" target=\"_blank\">&copy; OpenStreetMap</a>&nbsp;contributors'
-          url="https://tile.jawg.io/jawg-sunny/{z}/{x}/{y}{r}.png?access-token=gLEFUdwGIyJxOzqWgXnDyQdBUquHAVUDvqJFUliKpH3e5FQ68AZTwUphVyo81Tmn"
-        />
-          <Marker
-          position={[event.coordinates[0],event.coordinates[1]]}
-          >
+          <MapContainer className="event-page-map-container"
+            center={[event.coordinates[0], event.coordinates[1]]}
+            zoom={13}
+            scrollWheelZoom={false}>
+            <TileLayer
+              attribution='<a href=\"https://www.jawg.io\" target=\"_blank\">&copy; Jawg</a> - <a href=\"https://www.openstreetmap.org\" target=\"_blank\">&copy; OpenStreetMap</a>&nbsp;contributors'
+              url="https://tile.jawg.io/jawg-sunny/{z}/{x}/{y}{r}.png?access-token=gLEFUdwGIyJxOzqWgXnDyQdBUquHAVUDvqJFUliKpH3e5FQ68AZTwUphVyo81Tmn"
+            />
+            <Marker
+            position={[event.coordinates[0],event.coordinates[1]]}
+            >
             </Marker>
-        </MapContainer>
+          </MapContainer>
           <div className="divider"></div>
           <section className="event-page-section">
             <h3>Description</h3>
@@ -82,16 +86,16 @@ useEffect(() => {
 
           {joined ? <button className="button join-button"
             onClick={()=>{
-              setJoined(false)
-              setNumberUsersJoining(numberUsersJoining-1)
-              setListUsersJoining(listUsersJoining.filter(joinedUserId => joinedUserId !== activeUser._id))
+              setJoined(false);
+              if (numberUsersJoining) setNumberUsersJoining(numberUsersJoining-1);
+              setListUsersJoining(listUsersJoining.filter(joinedUserId => joinedUserId !== activeUser._id));
               removeJoinedEvent(event._id); }}>JOINED</button>
               :
               <button className="button join-button"
               onClick={()=>{
-              setJoined(true)
-              setNumberUsersJoining(numberUsersJoining+1)
-              setListUsersJoining([...listUsersJoining, activeUser._id])
+              setJoined(true);
+              if (numberUsersJoining) setNumberUsersJoining(numberUsersJoining+1);
+              setListUsersJoining([...listUsersJoining, activeUser._id]);
               addToJoinedEvents(event._id);
             }}>JOIN</button>
 

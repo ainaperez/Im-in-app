@@ -5,7 +5,7 @@ import Menu from "../Navigation/Menu"
 import LoadingComponent from "../UI/LoadingComponent"
 import HeaderComponent from "./Header"
 
-const Layout = (props) => {
+const Layout = ({children}) => {
 
   const {isLoading, activeUser} = useContext(Context)
 
@@ -14,7 +14,7 @@ const Layout = (props) => {
       <>
       <HeaderComponent />
       <div className="wrapper">
-      {props.children}
+      {children}
       </div>
       <Menu />
       </>

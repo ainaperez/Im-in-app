@@ -36,7 +36,7 @@ const Menu = () => {
      <Link to={`/profile/${activeUser.username}`} state={{id: activeUser._id}} className="nav-item"> <Avatar src={isLoading ? '/blank-profile-picture.webp':`https://res.cloudinary.com/dyjtzcm9r/image/upload/v1682429215/${activeUser.profilePicture}`}/></Link>
    </ul>
   </nav>
-  <CreateEvent open={open} close={handleCancel} />
+  <CreateEvent props={{open: open, close: handleCancel}} />
   </div>
   </>
 
