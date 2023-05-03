@@ -105,9 +105,11 @@ const CreateEvent = ({props}) => {
   return (
 
     <ModalComponent
-    title="Create new Event"
-    open={props.open}
-    close={props.close}
+      props={{
+        title: "Create new Event",
+        open: props.open,
+        close: props.close
+      }}
     >
       <CreateEventModalHeader step={step} handleStep={handleStep} />
 
@@ -116,24 +118,26 @@ const CreateEvent = ({props}) => {
         {step === 0 &&
           <>
           <Form
-        name="create-event-first"
-        onFinish={() => handleStep(true)}
-        >
-        <Form.Item
-        name="title"
-        label="Title"
-        >
+            name="create-event-first"
+            onFinish={() => handleStep(true)}
+          >
+          <Form.Item
+            name="title"
+            label="Title"
+          >
           <InputComponent
-          id="title"
-          name="title"
-          type="text"
-          autoComplete="title"
-          required={true}
-          maxLength={220}
-          minLength={4}
-          placeholder="max 220 characters"
-          onchange={handleInputChange}
-          value={title}
+            props={{
+              id: "title",
+              name: "title",
+              type: "text",
+              autoComplete: "title",
+              required: true,
+              maxLength: 220,
+              minLength: 4,
+              placeholder: "max 220 characters",
+              onchange: handleInputChange,
+              value: title
+            }}
           />
         </Form.Item>
 
@@ -156,14 +160,17 @@ const CreateEvent = ({props}) => {
         <Form.Item name="date" label="Time"
          >
           <InputComponent
-          id="date"
-          name="date"
-          type="datetime-local"
-          autoComplete="date"
-          required={true}
-          placeholder="max 220 characters"
-          onchange={handleInputChange}
-          value={date}/>
+            props={{
+              id: 'date',
+              name: 'date',
+              type: 'datetime-local',
+              autoComplete: 'date',
+              required: true,
+              placeholder: 'max 220 characters',
+              onChange: handleInputChange,
+              value: date
+            }}
+          />
         </Form.Item>
 
         <Form.Item name="location" label="Location">
@@ -223,20 +230,25 @@ const CreateEvent = ({props}) => {
         onFinish={() => handleStep(true)}>
         <Form.Item name="limitAttendees" label="Limit Attendees">
           <NumberInputComponent
-          id="limitAttendees"
-          name="limitAttendees"
-          autoComplete="limitAttendees"
-          required={false}
-          placeholder="no limit"
-          onchange={(e)=>{console.log(e);setLimitAttendees(e)}}
+            props={{
+              id: 'limitAttendees',
+              name: "limitAttendees",
+              autoComplete: "limitAttendees",
+              required: false,
+              placeholder: "no limit",
+              onchange: (e)=>{console.log(e);
+                setLimitAttendees(e)}
+            }}
           />
         </Form.Item>
 
         <Form.Item name="visibility" label="Visibility">
           <SwitchInputComponent
-           id="visibility"
-           name="visibility"
-           onchange={handleSwitch}
+            props={{
+              id: 'visibility',
+              name: 'visibility',
+              onChange: handleSwitch
+            }}
           />
         </Form.Item>
 

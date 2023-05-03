@@ -5,7 +5,7 @@ import { useContext, useState, useEffect} from 'react';
 import './MapComponent.css'
 
 const MeetingPointMarker = (props) => {
-  const [position, setPosition] = useState(null)
+  const [position, setPosition] = useState<L.LatLng | null>(null)
 
   var ownPositionIcon = new L.Icon({
     iconUrl: '/Map_marker.png',
@@ -19,10 +19,10 @@ const MeetingPointMarker = (props) => {
   const map = useMapEvents({
     click(e){
       map.flyTo(e.latlng, map.getZoom())
-      setPosition([e.latlng.lat, e.latlng.lng])
-      props.handleSelect([e.latlng.lat, e.latlng.lng])
+      const newPosition = L.latLng(e.latlng.lat, e.latlng.lng);
+      setPosition(newPosition);
+      props.handleSelect(newPosition);
     },
-
   })
 
   useEffect(() => {

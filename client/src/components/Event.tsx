@@ -1,7 +1,7 @@
 import './Event.css';
 import { useContext, useEffect, useState } from "react";
 import Context from "./context/context";
-import {HeartOutlined, HeartFilled, EditFilled} from '@ant-design/icons';
+import {HeartOutlined, HeartFilled, EditFilled} from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 function Event ({link, data, isEventFromOwner = false, numberUsersJoining = data.joined.length}) {
 

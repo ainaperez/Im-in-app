@@ -10,54 +10,58 @@ import LoadingComponent from "../UI/LoadingComponent";
 import {Dropdown} from "antd";
 import * as ActiveUserService from '../../services/active_user_service';
 import * as UserService from '../../services/user_service';
+import { User } from '../../types/User';
+import { EventInterface } from '../../types/EventInterface';
 
-const ProfilePage = (props) => {
+const ProfilePage = () => {
 
   const {events, users, activeUser, setActiveUser, navigate} = useContext(Context);
 
   const {state} = useLocation();
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState<User | null>(null)
   const [isProfileFromActiveUser, setIsProfileFromActiveUser] = useState(false)
-  const [filteredOwnEvents, setFilteredOwnEvents] = useState(null)
-  const [isFriend, setIsFriend] = useState();
-  const [friends, setFriends] = useState()
+  const [filteredOwnEvents, setFilteredOwnEvents] = useState<Event[]>([])
+  const [isFriend, setIsFriend] = useState(false);
+  const [friendsNumber, setFriendsNumber] = useState(0)
 
-async function findUserByID (id) {
-  setUser(await users.find(user => user._id === id));
-  if(activeUser._id == id) setIsProfileFromActiveUser(true)
-}
-
-function filterOwnEvents(){
-  setFilteredOwnEvents(events.filter(event => event.owner === user._id))
-}
-
-useEffect(() => {
-
-  if(users && activeUser){
-
-    findUserByID(state.id)
-  }
-}, [users, activeUser, state])
-
-useEffect(() => {
-  if(user && events){
-    if(user.friends.find(friend => friend == activeUser._id)){
-      setIsFriend(true)
+  useEffect(() => {
+    async function findUserByID (id) {
+      setUser(await users.find(user => user._id === id));
+      if(+activeUser._id === +id) setIsProfileFromActiveUser(true)
     }
-    setFriends(user.friends.length)
-    filterOwnEvents()
-  }
-}, [user, events, state])
+    if(users && activeUser){
+      findUserByID(state.id)
+    }
+  }, [users, activeUser, state])
+  
+  useEffect(() => {
+    function filterOwnEvents(){
+      if (user && user._id) {
+        setFilteredOwnEvents(events.filter(event => event.owner === user._id))
+      }
+    }
+    if(user && events){
+      if(user.friends.find(friend => +friend === +activeUser._id)){
+        setIsFriend(true)
+      }
+      setFriendsNumber(user.friends.length)
+      filterOwnEvents()
+    }
+  }, [user, events, state, activeUser])
 
 const handleAddFriend = () => {
-  setIsFriend(true)
-  setFriends(friends+1)
-  UserService.addFriend(activeUser._id, user._id)
+  if (user && user._id) {
+    setIsFriend(true)
+    setFriendsNumber(friendsNumber+1)
+    UserService.addFriend(activeUser._id, user._id)
+  }
 }
 const handleRemoveFriend = () => {
-  setIsFriend(false)
-  setFriends(friends-1)
-  UserService.removeFriend(activeUser._id, user._id)
+  if (user && user._id) {
+    setIsFriend(false)
+    setFriendsNumber(friendsNumber-1)
+    UserService.removeFriend(activeUser._id, user._id)
+  }
 }
 
 const handleLogout = async(username) => {
@@ -85,7 +89,7 @@ return(
         <p className="username">{user.username}</p>
         <div className="user-subdetails">
           <div className="user-friends">
-            <p className="user-friends-number">{friends}</p>
+            <p className="user-friends-number">{friendsNumber}</p>
             <p>friends</p>
           </div>
           {isProfileFromActiveUser ?
