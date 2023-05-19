@@ -12,12 +12,12 @@ const {isLoading, query} = useContext(Context)
  {isLoading ? <LoadingComponent /> :
  <div className="event-list" id="list">
     {props.events.map((singleEvent, index) => {
-      if(singleEvent.title !== ''){
-        return singleEvent.title.toLowerCase().indexOf(query.toLowerCase()) !== -1 && <>
-            {index > 0 && <div className="divider"></div>}
-            <Event key={singleEvent.title} link={true} data={singleEvent} isEventFromOwner={props.isEventFromOwner}/>
-            </>
-      }
+        if(singleEvent && singleEvent.title !== ''){
+          return singleEvent.title.toLowerCase().indexOf(query.toLowerCase()) !== -1 && <>
+              {index > 0 && <div className="divider"></div>}
+              <Event key={singleEvent.title} link={true} data={singleEvent} isEventFromOwner={props.isEventFromOwner}/>
+              </>
+        }
       })}
   </div>}
 

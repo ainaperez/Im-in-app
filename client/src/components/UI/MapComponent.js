@@ -59,7 +59,7 @@ return (
       >
       <TileLayer
         attribution='<a href=\"https://www.jawg.io\" target=\"_blank\">&copy; Jawg</a> - <a href=\"https://www.openstreetmap.org\" target=\"_blank\">&copy; OpenStreetMap</a>&nbsp;contributors'
-        url="https://tile.jawg.io/jawg-sunny/{z}/{x}/{y}{r}.png?access-token=gLEFUdwGIyJxOzqWgXnDyQdBUquHAVUDvqJFUliKpH3e5FQ68AZTwUphVyo81Tmn"
+        url={`https://tile.jawg.io/jawg-sunny/{z}/{x}/{y}{r}.png?access-token=${process.env.REACT_APP_JAWG}`}
       />
       <MeetingPointMarker initialValue={props.initialValue} handleSelect={props.handleSelect} />
       <RecenterAutomatically newCoordinates={props.initialValue} />

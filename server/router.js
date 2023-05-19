@@ -2,7 +2,6 @@ require('dotenv').config();
 const router = require('express').Router();
 const userController = require('./controllers/user_controller');
 const eventController = require('./controllers/event_controller');
-const activeUserController = require('./controllers/activeUser_controller');
 var passport = require('passport');
 
 // const upload = require("./middleware/multer_middleware")
@@ -17,9 +16,6 @@ const upload = Multer({
 
 // USER AUTHENTICATION ROUTES
 router.get('/login/:username/:password', userController.loginUser);
-router.get('/get-active-user', activeUserController.getActiveUser);
-router.post('/set-active-user', activeUserController.setActiveUser);
-router.post('/delete-active-user', activeUserController.deleteActiveUser)
 
 // PAGES ROUTES
 

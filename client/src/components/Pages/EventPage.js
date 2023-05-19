@@ -33,7 +33,7 @@ function getJoinedUsersInfo(userId) {
       let avatar = users.find(user => {
         return user._id === userId
       })
-      return <Avatar src={`https://res.cloudinary.com/dyjtzcm9r/image/upload/v1682429215/${avatar.profilePicture}`} />;
+      return <Avatar src={`https://res.cloudinary.com/${process.env.REACT_APP_CLOUD_NAME}/image/upload/v1682429215/${avatar.profilePicture}`} />;
     }
   }
 }
@@ -53,7 +53,7 @@ useEffect(() => {
         <MapContainer className="event-page-map-container" center={[event.coordinates[0], event.coordinates[1]]} zoom={13} scrollWheelZoom={false}>
         <TileLayer
           attribution='<a href=\"https://www.jawg.io\" target=\"_blank\">&copy; Jawg</a> - <a href=\"https://www.openstreetmap.org\" target=\"_blank\">&copy; OpenStreetMap</a>&nbsp;contributors'
-          url="https://tile.jawg.io/jawg-sunny/{z}/{x}/{y}{r}.png?access-token=gLEFUdwGIyJxOzqWgXnDyQdBUquHAVUDvqJFUliKpH3e5FQ68AZTwUphVyo81Tmn"
+          url={`https://tile.jawg.io/jawg-sunny/{z}/{x}/{y}{r}.png?access-token=${process.env.REACT_APP_JAWG}`}
         />
           <Marker
           position={[event.coordinates[0],event.coordinates[1]]}

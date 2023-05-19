@@ -16,7 +16,7 @@ const SearchComponent = () => {
 
   return (
     <Search
-        placeholder="input search text"
+        placeholder="Search for an event..."
         onChange={onChangeHandler}
         className="search-bar"
      />

@@ -5,7 +5,7 @@ import Layout from "../Layout/Layout";
 import SearchComponent from "../UI/SearchComponent";
 
 const HomePage = () => {
-const{events} = useContext(Context)
+  const{events} = useContext(Context)
   return (
     <Layout>
       <div className="no-overflow">

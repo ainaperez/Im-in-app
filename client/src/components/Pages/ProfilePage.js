@@ -54,6 +54,7 @@ const handleAddFriend = () => {
   setFriends(friends+1)
   UserService.addFriend(activeUser._id, user._id)
 }
+
 const handleRemoveFriend = () => {
   setIsFriend(false)
   setFriends(friends-1)
@@ -81,7 +82,7 @@ return(
   <div>{user ?
     <>
       <div className="user-details">
-        <Avatar src={`https://res.cloudinary.com/dyjtzcm9r/image/upload/v1682429215/${user.profilePicture}`} size={80} alt="profile pic" />
+        <Avatar src={`https://res.cloudinary.com/${process.env.REACT_APP_CLOUD_NAME}/image/upload/v1682429215/${user.profilePicture}`} size={80} alt="profile pic" />
         <p className="username">{user.username}</p>
         <div className="user-subdetails">
           <div className="user-friends">

@@ -1,6 +1,5 @@
 import {commonHeaders, fetchReq } from "./services_common_data"
 
-
 const registerUser = (username, age, password) => fetchReq('register', {
   method: 'POST',
   headers: {...commonHeaders},

@@ -47,7 +47,6 @@ function Event ({link, data, isEventFromOwner, numberUsersJoining}) {
   }
 
   useEffect(()  => {
-    console.log(numberUsersJoiningEvent)
 
   }, [numberUsersJoining])
 
@@ -62,7 +61,7 @@ function Event ({link, data, isEventFromOwner, numberUsersJoining}) {
         <p>{`${monthNames[data.date.getMonth()]} ${getParsedDay(data.date.getDate())}`} - {formatTimeAmPm(data.date)}</p>
       </div>
       <div className='event-picture'>
-        <img src={`https://res.cloudinary.com/dyjtzcm9r/image/upload/c_scale,w_653/v1682328789/${data.image}`} alt={`event ${data.title}`} className="event-image"/>
+        <img src={`https://res.cloudinary.com/${process.env.REACT_APP_CLOUD_NAME}/image/upload/c_scale,w_653/v1682328789/${data.image}`} alt={`event ${data.title}`} className="event-image"/>
         <div className='event-like'>
           <p>{numberUsersJoiningEvent}</p>
           {isEventFromOwner ? <EditFilled /> :

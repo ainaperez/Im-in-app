@@ -50,6 +50,7 @@ const userSchema = mongoose.Schema({
   }
 });
 
+// The user created doesn't need a PASSWORD as passport for now creates a salt and a hash automatically
 userSchema.plugin(passportLocalMongoose)
 
 module.exports = mongoose.model('User', userSchema);

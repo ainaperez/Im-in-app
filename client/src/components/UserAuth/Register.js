@@ -14,7 +14,6 @@ const Register = () => {
 
   function handleInputChange (e) {
     const input = e.target.name;
-    console.log(input)
     if(input === 'username') setUsername(e.target.value)
     if(input === 'userAge') setUserAge(e.target.value)
     if(input === 'password') {

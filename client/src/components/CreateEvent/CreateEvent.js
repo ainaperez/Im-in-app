@@ -93,41 +93,39 @@ const CreateEvent = (props) => {
     //There may be problems when uploading the phots to cloudinary.
     // the addEvent function may not wait for the photo to be uploaded
     const public_id = await photoUpload(imageSelected);
-    console.log(public_id)
 
+    const newEvent = {
+      owner: activeUser._id,
+      title: title,
+      description: description,
+      date: date,
+      location: location,
+      coordinates: coordinates,
+      image: imageSelected.name ,
+      limitAttendees: limitAttendees,
+      visibility: visibility,
+      invitees: invitees,
+      hideFrom: hideFrom
+    };
 
-    // const newEvent = {
-    //   owner: activeUser._id,
-    //   title: title,
-    //   description: description,
-    //   date: date,
-    //   location: location,
-    //   coordinates: coordinates,
-    //   image: imageSelected.name ,
-    //   limitAttendees: limitAttendees,
-    //   visibility: visibility,
-    //   invitees: invitees,
-    //   hideFrom: hideFrom
-    // };
-
-    // EventService.addEvent(newEvent).then(()=> {
-    //   const newEvents = [...events, {owner: activeUser._id,
-    //     title: title,
-    //     description: description,
-    //     date: new Date( Date.parse(date)),
-    //     location: location,
-    //     coordinates: coordinates,
-    //     image: imageSelected.name ,
-    //     limitAttendees: limitAttendees,
-    //     visibility: visibility,
-    //     invitees: invitees,
-    //     hideFrom: hideFrom,
-    //     joined: [],
-    //     liked: false
-    //   }]
-    //   setEvents(formatEvents(activeUser, newEvents))
-    //   props.close()
-    // })
+    EventService.addEvent(newEvent).then(()=> {
+      const newEvents = [...events, {owner: activeUser._id,
+        title: title,
+        description: description,
+        date: new Date( Date.parse(date)),
+        location: location,
+        coordinates: coordinates,
+        image: public_id ,
+        limitAttendees: limitAttendees,
+        visibility: visibility,
+        invitees: invitees,
+        hideFrom: hideFrom,
+        joined: [],
+        liked: false
+      }]
+      setEvents(formatEvents(activeUser, newEvents))
+      props.close()
+    })
   }
 
   useEffect(() => {
@@ -267,7 +265,7 @@ const CreateEvent = (props) => {
           autoComplete="limitAttendees"
           required={false}
           placeholder="no limit"
-          onchange={(e)=>{console.log(e);setLimitAttendees(e)}}
+          onchange={(e)=>{setLimitAttendees(e)}}
           />
         </Form.Item>
 
@@ -332,9 +330,6 @@ const CreateEvent = (props) => {
         </Form.Item>
         {tempImageUrl && <img className="preview-image" src={tempImageUrl} alt="tempImage" />}
         </div>
-        {/* <Image
-         cloudName="dyjtzcm9r"
-         publicId={`https://res.cloudinary.com/dyjtzcm9r/image/upload/v1682328789/${imageSelected.name}`} /> */}
         </div>
         </Form>
         </>
