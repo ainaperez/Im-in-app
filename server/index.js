@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const router = require('./router');
 const app = express();
-const SERVER_PORT = process.env.PORT;
+const SERVER_PORT = process.env.PORT || 8080;
 const session = require('express-session');
 const passport = require('passport');
 //const {verifyToken} = require('./middleware/verifyToken');
@@ -29,7 +29,7 @@ app.use(passport.session());
 
 app.use(router);
 
-
+app.use(express.static('public'));
 
 
 app.listen(SERVER_PORT, (err) => {

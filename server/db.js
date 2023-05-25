@@ -1,11 +1,27 @@
 const mongoose = require('mongoose');
-const DB_PORT = process.env.DB_PORT || 27017;
-const DB_NAME = process.env.DB_NAME || 'imin';
+const {
+  DB_USERNAME,
+  DB_PASSWORD,
+  DB_HOSTNAME,
+  DB_PORT,
+  DB_NAME
+} = process.env;
+
+const options = {
+  // useNewUrlParser: true,
+  // reconnectTries: Number.MAX_VALUE,
+  // reconnectInterval: 500,
+  // connectTimeoutMS: 10000,
+};
+
+const url = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOSTNAME}/${DB_NAME}?authSource=admin`
+console.log(url)
 
 try{
   mongoose.connect(
-    `mongodb://localhost:${DB_PORT}/${DB_NAME}`
+    url, options
   )
+  console.log(`🦆 Database (sessions) connected @ port ${DB_PORT}!`);
 }catch(err){
   if (err) {
     console.log(`😞 Sorry, something went wrong! ${err}`);
