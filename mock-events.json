@@ -15,7 +15,7 @@
     40.785091,
     -73.968285
   ],
-  "image": "event1-mock_bjhoxl.jpg",
+  "image": "event1-mock_lxbrza.jpg",
   "limitAttendees": 20,
   "invitees": [],
   "hideFrom": [],
@@ -42,7 +42,7 @@
     40.720741,
     -73.997352
   ],
-  "image": "event2-mock_mnyigf.jpg",
+  "image": "event2-mock_gj7gb4.jpg",
   "limitAttendees": 2,
   "invitees": [],
   "hideFrom": [],
@@ -71,7 +71,7 @@
     40.732249,
     -74.002843
   ],
-  "image": "event3-mock_astchl.jpg",
+  "image": "event3-mock_lzfcav.jpg",
   "invitees": [],
   "hideFrom": [],
   "joined": [],
@@ -96,7 +96,7 @@
     40.785091,
     -73.968285
   ],
-  "image": "event3-mock_astchl.jpg",
+  "image": "event3-mock_lzfcav.jpg",
   "invitees": [],
   "hideFrom": [],
   "joined": [],
@@ -121,7 +121,7 @@
     52.498648,
     13.422547
   ],
-  "image": "event2-mock_mnyigf.jpg",
+  "image": "event3-mock_lzfcav.jpg",
   "limitAttendees": 4,
   "invitees": [],
   "hideFrom": [],
@@ -147,7 +147,7 @@
     52.516275,
     13.377704
   ],
-  "image": "event1-mock_bjhoxl.jpg",
+  "image": "event1-mock_lxbrza.jpg",
   "invitees": [],
   "hideFrom": [],
   "joined": [],
@@ -172,7 +172,7 @@
     "52.527973",
     "13.436372"
   ],
-  "image": "park1.png",
+  "image": "event1-mock_lxbrza.jpg",
   "limitAttendees": "5",
   "visibility": true,
   "invitees": [],
@@ -205,7 +205,7 @@
     52.535753,
     13.397106
   ],
-  "image": "event3-mock_astchl.jpg",
+  "image": "event3-mock_lzfcav.jpg",
   "invitees": [],
   "hideFrom": [
     "644116416da455b7fc0c8bba"
@@ -233,7 +233,7 @@
     "52.488303",
     "3.256437"
   ],
-  "image": "event1-mock_bjhoxl.jpg",
+  "image": "event1-mock_lxbrza.jpg",
   "visibility": true,
   "invitees": [],
   "hideFrom": [
@@ -262,7 +262,7 @@
     52.510544839994495,
     13.436822138923993
   ],
-  "image": "club1.jpeg",
+  "image": "club1_jltfud.jpg",
   "limitAttendees": 2,
   "visibility": true,
   "invitees": [],
@@ -290,7 +290,7 @@
     52.5235356203048,
     13.43312279576739
   ],
-  "image": "park2.jpeg",
+  "image": "park1_heiflp.jpg",
   "limitAttendees": null,
   "visibility": true,
   "invitees": [],
@@ -318,13 +318,66 @@
     52.51575769869691,
     13.353109359741213
   ],
-  "image": "park2.jpeg",
+  "image": "park2_ibhcbz.jpg",
   "limitAttendees": 2,
   "visibility": true,
   "invitees": [],
   "hideFrom": [
     "64415e5f97483b215fd4c3eb"
   ],
+  "joined": [],
+  "announcements": [],
+  "canceled": false,
+  "active": true,
+  "liked": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64490e9a9ce4de36be5f157c"
+  },
+  "owner": {
+    "$oid": "644116416da455b7fc0c8bba"
+  },
+  "title": "example title",
+  "description": "xnsmlanxsas",
+  "date": {
+    "$date": "2023-04-13T14:32:00.000Z"
+  },
+  "location": "Texas, USA",
+  "coordinates": [
+    31.97524533785984,
+    -99.8927114514882
+  ],
+  "image": "dinner1.jpeg",
+  "limitAttendees": null,
+  "visibility": true,
+  "invitees": [],
+  "hideFrom": [],
+  "joined": [],
+  "announcements": [],
+  "canceled": false,
+  "active": true,
+  "liked": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64490ebe9ce4de36be5f1582"
+  },
+  "owner": {
+    "$oid": "644116416da455b7fc0c8bba"
+  },
+  "title": "jdksaljds",
+  "description": "dnksalds",
+  "date": {
+    "$date": "2023-04-28T16:49:00.000Z"
+  },
+  "location": "dsnkaldmksa",
+  "coordinates": null,
+  "image": "dinner1.jpeg",
+  "limitAttendees": null,
+  "visibility": true,
+  "invitees": [],
+  "hideFrom": [],
   "joined": [],
   "announcements": [],
   "canceled": false,

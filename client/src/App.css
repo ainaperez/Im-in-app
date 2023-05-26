@@ -13,6 +13,14 @@
  /* width: 95vw; */
 }
 
+@media only screen and (min-width: 468px) {
+  .wrapper {
+    width: 55vw;
+    margin: auto;
+  }
+}
+
+
 h1 {
   font-size: var(--mob-txt-size-h1)
 }

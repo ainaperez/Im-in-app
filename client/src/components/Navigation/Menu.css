@@ -12,6 +12,7 @@
   justify-content: space-between;
 }
 
+
 .nav-item{
   display: flex;
   flex-direction: column;
@@ -38,4 +39,41 @@
  width: 40px;
  height: 40px;
  border-radius: 50%;
+}
+
+@media only screen and (min-width: 468px) {
+  .menu-wrapper {
+    left: 0;
+    top: 72px;
+    width: 7em;
+    height: calc(100%);
+    border-top: none;
+  }
+  .menu ul {
+    flex-direction: column;
+  }
+
+  .nav-item {
+    width: 7em;
+    flex-direction: row;
+    white-space: nowrap;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .nav-item:hover{
+    /* transform: scale(1.1); */
+    animation: grow 0.1s ease-in-out;
+    animation-fill-mode: forwards;
+    /* background-color: rgb(238, 238, 238) !important; */
+  }
+
+  @keyframes grow {
+    0%{
+      transform: scale(1);
+    }
+    100%{
+      transform: scale(1.05);
+    }
+  }
 }

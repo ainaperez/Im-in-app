@@ -29,8 +29,6 @@ app.use(passport.session());
 
 app.use(router);
 
-app.use(express.static('public'));
-
 
 app.listen(SERVER_PORT, (err) => {
   if (err) {
