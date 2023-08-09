@@ -1,5 +1,13 @@
 # ImIn app
 
+## Note from the author
+
+Hi, this repository corresponds to the first MVP of the app that was designed and developed in 5 days. 
+A new deployable version is being built in [the IMIN organization](https://github.com/Im-In-app). 
+The repositories there are private but you will be able to see the deployed version soon. 
+The new app includes many new features, bug fixes, authentication and security, and much better code. It will also become more scalable.
+Meanwhile, you can check [the open project](https://github.com/orgs/Im-In-app/projects/1/views/1) to keep track of the new features being built or bugs solved :) 
+
 ## Introduction
 
 Welcome to ImIn - a full-stack application built with React, Node, and Express. This app allows users to create plans or events and invite friends to join them. The backend of the application uses MongoDB and Mongoose to store and manage data, while the frontend utilizes Cloudinary to store user-inputted pictures in the cloud. Additionally, the app utilizes the Google Places API to autocomplete addresses and obtain coordinates, and Leaflet to display maps. With ImIn, users can easily create and manage events, share them with friends, and make unforgettable memories. We hope you enjoy using our app!
